@@ -15,6 +15,7 @@ COPY feature_utils.py .
 COPY best_rf_model_ni225_diff_maxitrade.pkl .
 COPY NI225_RF_MetaLabel.pkl .
 COPY requirements.txt .
+COPY .env .
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt

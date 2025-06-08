@@ -1,8 +1,31 @@
 import streamlit as st
 import pandas as pd
 import io
+from dotenv import load_dotenv
 import sys
+import os
 from feature_utils import create_features, create_features_NotOpen, create_side_features, predict_today, remove_string_from_columns
+
+# Load credentials from .env file
+load_dotenv()
+LOGIN_ID = os.getenv("LOGIN_ID")
+LOGIN_PASS = os.getenv("LOGIN_PASS")
+
+# Initialize session state
+if "logged_in" not in st.session_state:
+    st.session_state.logged_in = False
+
+def login():
+    st.title("🔐 Login Required")
+    username = st.text_input("Username")
+    password = st.text_input("Password", type="password")
+    if st.button("Login"):
+        if username == LOGIN_ID and password == LOGIN_PASS:
+            st.session_state.logged_in = True
+            st.success("Login successful!")
+            st.rerun()
+        else:
+            st.error("Invalid username or password.")
 
 def run_main_and_capture_output():
     output = io.StringIO()
@@ -110,17 +133,23 @@ def run_main_and_capture_output():
 
 
 # ===== Streamlit UI部分 =====
+def main_app():
+    st.title("NI225 prediction AI")
 
-st.title("NI225 prediction AI")
+    # Add a text input box for manual open price
+    manual_open_price = st.text_input("Enter manual open price for ^N225 (leave blank to use default):", "")
 
-# Add a text input box for manual open price
-manual_open_price = st.text_input("Enter manual open price for ^N225 (leave blank to use default):", "")
+    if st.button("Press here to predict daily move of NI225"):
+        st.write("proccessing...")
 
-if st.button("Press here to predict daily move of NI225"):
-    st.write("proccessing...")
+        # Convert manual_open_price to float if provided, otherwise set to None
+        manual_open_price = float(manual_open_price) if manual_open_price.strip() else None
 
-    # Convert manual_open_price to float if provided, otherwise set to None
-    manual_open_price = float(manual_open_price) if manual_open_price.strip() else None
+        output = run_main_and_capture_output()
+        st.text_area("Output", output, height=500)
 
-    output = run_main_and_capture_output()
-    st.text_area("Output", output, height=500)
+# Auth gate
+if not st.session_state.logged_in:
+    login()
+else:
+    main_app()
