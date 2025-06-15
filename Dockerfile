@@ -1,4 +1,4 @@
-# Use official Streamlit base image
+# Use official Python base image
 FROM python:3.10-slim
 
 # Set working directory
@@ -20,8 +20,12 @@ COPY .env .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose Streamlit port
+# Default to exposing Streamlit's local dev port
 EXPOSE 8501
 
-# Run the Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Cloud Run expects the app to listen on $PORT (default 8080).
+# Streamlit will read the PORT environment variable, defaulting to 8501 for local dev.
+ENV PORT=8080
+
+# Use bash -c to evaluate the env variable for port
+CMD bash -c "streamlit run app.py --server.port=\${PORT:-8501} --server.address=0.0.0.0"
