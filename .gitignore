@@ -1,1 +1,3 @@
 .vscode/
+#shall be included when deploying
+.env

@@ -75,34 +75,15 @@ def run_main_and_capture_output():
     merged_features.fillna(method='ffill', inplace=True)
     merged_features.columns = [col.lstrip('^') for col in merged_features.columns]
     merged_features_all = merged_features
-    merged_features = merged_features[['Open_Close_diff_ratio', 'Close_Close_diff_ratio',
-       'Close_Open_diff_ratio', 'RSI', 'MACD Histogram',
-       'Open_diff_ratio_ByWeek', 'Open_diff_ratio_ByMonth',
-       'GSPC_Open_Close_diff_ratio', 'GSPC_Close_Close_diff_ratio',
-       'GSPC_Close_Open_diff_ratio', 'GSPC_RSI', 'GSPC_Open_diff_ratio_ByWeek',
-       'GSPC_Open_diff_ratio_ByMonth', 'DJI_Open_Close_diff_ratio',
-       'DJI_Close_Close_diff_ratio', 'DJI_Close_Open_diff_ratio', 'DJI_RSI',
-       'DJI_MACD Histogram', 'DJI_Open_diff_ratio_ByWeek',
-       'DJI_Open_diff_ratio_ByMonth', 'IXIC_Open_Close_diff_ratio',
-       'IXIC_Close_Close_diff_ratio', 'IXIC_Close_Open_diff_ratio', 'IXIC_RSI',
-       'IXIC_MACD Histogram', 'IXIC_Open_diff_ratio_ByWeek',
-       'IXIC_Open_diff_ratio_ByMonth', 'RUT_Open_Close_diff_ratio',
-       'RUT_Close_Close_diff_ratio', 'RUT_Close_Open_diff_ratio', 'RUT_RSI',
-       'RUT_MACD Histogram', 'RUT_Open_diff_ratio_ByWeek',
-       'RUT_Open_diff_ratio_ByMonth', 'GDAXI_Open_Close_diff_ratio',
-       'GDAXI_Close_Close_diff_ratio', 'GDAXI_Close_Open_diff_ratio',
-       'GDAXI_RSI', 'GDAXI_MACD Histogram', 'GDAXI_Open_diff_ratio_ByWeek',
-       'GDAXI_Open_diff_ratio_ByMonth', 'HSI_Open_Close_diff_ratio',
-       'HSI_Close_Close_diff_ratio', 'HSI_Close_Open_diff_ratio', 'HSI_RSI',
-       'HSI_MACD Histogram', 'HSI_Open_diff_ratio_ByWeek',
-       'HSI_Open_diff_ratio_ByMonth', 'KS11_Open_Close_diff_ratio',
-       'KS11_Close_Close_diff_ratio', 'KS11_Close_Open_diff_ratio', 'KS11_RSI',
-       'KS11_MACD Histogram', 'KS11_Open_diff_ratio_ByWeek',
-       'KS11_Open_diff_ratio_ByMonth', 'VIX_Open_prev',
-       'VIX_Open_Close_diff_ratio', 'VIX_Close_Close_diff_ratio',
-       'TNX_Open_prev', 'TNX_Open_Close_diff_ratio',
-       'TNX_Close_Close_diff_ratio', 'TYX_Open_prev',
-       'TYX_Open_Close_diff_ratio', 'TYX_Close_Close_diff_ratio']]
+    merged_features = merged_features[['Open_Close_diff_ratio', 'Close_Open_diff_ratio',
+       'Open_diff_ratio_ByWeek', 'GSPC_Close_Close_diff_ratio',
+       'GSPC_Open_diff_ratio_ByWeek', 'GSPC_Open_diff_ratio_ByMonth',
+       'DJI_Close_Open_diff_ratio', 'DJI_Open_diff_ratio_ByWeek',
+       'DJI_Open_diff_ratio_ByMonth', 'RUT_Open_diff_ratio_ByWeek',
+       'GDAXI_Close_Open_diff_ratio', 'GDAXI_Open_diff_ratio_ByMonth',
+       'KS11_Close_Open_diff_ratio', 'KS11_RSI', 'VIX_Open_prev',
+       'VIX_Open_Close_diff_ratio', 'TNX_Open_prev',
+       'TNX_Close_Close_diff_ratio', 'TYX_Open_prev']]
 
    
     # カラム名の先頭にある ^ を削除

@@ -357,14 +357,14 @@ def predict_today(X_input):
 
     # 最後のレコードに基づいてアクションを決定してプリント
     if last_prediction == 1:
-        print("Strong buy NI225(diff rf model)")
+        print("Strong buy NI225")
     elif last_prediction == 0.5:
-        print("Buy NI225(diff rf model)")
+        print("Buy NI225")
     elif last_prediction == -0.5:
-        print("Sell NI225(diff rf model)")
+        print("Sell NI225")
     elif last_prediction == -1:
-        print("Strong sell NI225(diff rf model)")
+        print("Strong sell NI225")
     else:
-        print("Do nothing for NI225(diff rf model)")
+        print("Do nothing for NI225")
 
     return y_pred_original_df
